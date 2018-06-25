@@ -20,8 +20,15 @@ public class DatabaseService {
         return new RestTemplate();
     }
 
-    public User hiService(Long id) {
-        return restTemplate.getForObject("http://SERVICE-HI/dept/"+id,User.class);
+    public User hiService(String username) {
+        try{
+            return restTemplate.getForObject("http://SERVICE-HI/house/"+username,User.class);
+        }catch (Exception e){
+            User user=new User();
+            user.setHouse(0);
+            return user;
+        }
+
     }
 
 }
